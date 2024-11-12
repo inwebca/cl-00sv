@@ -3,7 +3,7 @@ import User from "../../models/User";
 
 const router = express.Router();
 
-//GET /user/all - All users
+//GET /users/all - All users
 router.get("/all", async (req, res) => {
     try {
         const users = await User.find();

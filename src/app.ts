@@ -4,13 +4,13 @@ import dotenv from "dotenv";
 dotenv.config();
 import "./db";
 import errorHandler from "./utils/errorHandler";
-import userRoutes from "./routes/user";
+import userRoutes from "./routes/users";
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use("/user", userRoutes);
+app.use("/users", userRoutes);
 //error middleware
 app.use(errorHandler);
 
