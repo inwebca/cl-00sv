@@ -1,0 +1,112 @@
+{
+	"info": {
+		"_postman_id": "5c0c189a-403c-416a-89b8-836b407fa13b",
+		"name": "cl-00sv",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14865342"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"test@test.com\",\r\n    \"password\": \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cl-00sv.vercel.app/users/register",
+					"protocol": "https",
+					"host": [
+						"cl-00sv",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"test@test.com\",\r\n    \"password\": \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cl-00sv.vercel.app/users/signin",
+					"protocol": "https",
+					"host": [
+						"cl-00sv",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"users",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cl-00sv.vercel.app/users/all",
+					"protocol": "https",
+					"host": [
+						"cl-00sv",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"users",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "protected",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cl-00sv.vercel.app/protected/profile",
+					"protocol": "https",
+					"host": [
+						"cl-00sv",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"protected",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
