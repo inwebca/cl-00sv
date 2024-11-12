@@ -8,8 +8,42 @@ dotenv.config();
 
 const router: Router = express.Router();
 
-//POST /users/login - Login user
-router.post("/login", async (req: Request, res: Response): Promise<any> => {
+//POST /users/register - Register user
+router.post("/register", async (req: Request, res: Response): Promise<any> => {
+  const { username, password } = req.body;
+
+  try {
+    const existingUser = await User.findOne({ username });
+    if (existingUser) {
+      return res.status(400).json({ message: "Username already taken" });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newUser = new User({
+      username,
+      password: hashedPassword,
+    });
+    
+    await newUser.save();
+
+    const token = jwt.sign(
+      { id: newUser._id, username: newUser.username },
+      process.env.SECRET_KEY as string,
+      {
+        expiresIn: "1h",
+      }
+    );
+
+    res.status(201).json({ token });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+// POST /users/signin - Sign in user
+router.post("/signin", async (req: Request, res: Response): Promise<any> => {
   const { username, password } = req.body;
 
   try {
@@ -20,7 +54,7 @@ router.post("/login", async (req: Request, res: Response): Promise<any> => {
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-      return res.status(401).json({ message: "Password not valid" });
+      return res.status(401).json({ message: "Invalid password" });
     }
 
     const token = jwt.sign(
@@ -33,9 +67,10 @@ router.post("/login", async (req: Request, res: Response): Promise<any> => {
 
     res.json({ token });
   } catch (error) {
-    res.status(500).json({ message: "Erreur serveur" });
+    res.status(500).json({ message: "Internal Server Error" });
   }
 });
+
 
 //GET /users/all - All users
 router.get("/all", async (req: Request, res: Response) => {

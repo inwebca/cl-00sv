@@ -1,9 +1,5 @@
-import mongoose, { Document, Schema } from "mongoose";
-
-interface IUser extends Document {
-  username: string;
-  password: string; // stockez le mot de passe haché
-}
+import mongoose, { Schema } from "mongoose";
+import { IUser } from "../interfaces/User";
 
 const UserSchema: Schema = new Schema(
   {
